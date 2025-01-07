@@ -1,0 +1,34 @@
+{
+    "name": "amfitruon",
+    "version": "0.0.1",
+    "description": "Amfitrúon is a Discord bot framework designed to bring RPG characters to life, creating immersive role-playing experiences.",
+    "main": "App.js",
+    "type": "module",
+    "scripts": {
+        "build": "npx tsc",
+        "start": "node ./build/App.js",
+        "build-and-start": "npm run build && npm run start",
+        "register": "npm run build && node ./build/RegisterCommands.js",
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/breno-hof/amfitr-on.git"
+    },
+    "author": "breno-hof",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/breno-hof/amfitr-on/issues"
+    },
+    "homepage": "https://github.com/breno-hof/amfitr-on#readme",
+    "dependencies": {
+        "@discordjs/voice": "^0.18.0",
+        "discord.js": "^14.14.1",
+        "dotenv": "^16.4.5"
+    },
+    "devDependencies": {
+        "@types/node": "^20.12.7",
+        "jest": "^29.0.0",
+        "typescript": "^5.4.5"
+    }
+}
