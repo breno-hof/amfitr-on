@@ -16,7 +16,7 @@ export class RegisterCommands {
         for (const file of commandFiles) {
             const command = await import(path.join(commandsPath, file));
             if (command.default?.data) {
-                this.commands.push(command.default.data);
+                this.commands.push(command.default.data());
             }
         }
     }

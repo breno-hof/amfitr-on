@@ -4,6 +4,10 @@ import { HandleInteractions } from "./HandleInteractions.js";
 import { ISlashCommand } from "./commands/ISlashCommand.js";
 import { RegisterCommands } from "./utils/RegisterCommands.js";
 import { EnvValidator } from "./utils/EnvValidator.js";
+import { CreatePersonaCommand } from "./commands/CreatePersonaCommand.js";
+import { PersonaManager } from "./managers/PersonaManager.js";
+import { ConnectPersonaCommand } from "./commands/ConnectPersonaCommand.js";
+import { VoiceChannelManager } from "./managers/VoiceChannelManager.js";
 
 class App {
 
@@ -16,7 +20,16 @@ class App {
         }
 
         const { DISCORD_TOKEN, APP_ID, PATH_COMMANDS } = process.env;
-        const commands = new Collection<string, ISlashCommand>();
+
+        const commands = new Collection<string, ISlashCommand>();        
+        const personaManager = new PersonaManager();
+        const voiceChannelManager = new VoiceChannelManager();
+        const createPersonaCommand = new CreatePersonaCommand(personaManager);
+        const connectPersonaCommand = new ConnectPersonaCommand(personaManager, voiceChannelManager);
+
+        commands.set(createPersonaCommand.name, createPersonaCommand);
+        commands.set(connectPersonaCommand.name, connectPersonaCommand);
+
         const client = new Client({ intents: [GatewayIntentBits.Guilds] });
         const handleInteractions = new HandleInteractions(commands);
 
